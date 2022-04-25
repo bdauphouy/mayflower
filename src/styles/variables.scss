@@ -1,16 +1,20 @@
 // Font-sizes
-$text-xxl: 1.5rem;
+$text-3xl: 3.75rem;
+$text-2xl: 1.5rem;
+$text-xl: 1.25rem;
 $text-lg: 1.125rem;
+$text-md: 1rem;
 
 // Font-families
-$font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-  'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
-  'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-$font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-  'Liberation Mono', 'Courier New', monospace;
+$font-sans: 'DM Sans', sans-serif;
 
 // Colors
-$color-slate-700: #334155;
-$color-slate-100: #f1f5f9;
-$color-blue-500: #3b82f6;
-$color-blue-400: #60a5fa;
+$color-pink: #ffdde2;
+$color-dark-blue: #6883bc;
+$color-blue: #7196c8;
+$color-purple: #84579b;
+$color-black: #1f1d2c;
+$color-dark-gray: #262837;
+$color-gray-2: #828282;
+$color-gray: #c4c4c4;
+$color-white: #ffffff;

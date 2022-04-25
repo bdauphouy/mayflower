@@ -4,18 +4,17 @@
 
 <div class="container">
   <div>
-    <Box title="Market Cap" value="$20,346" />
-    <Box title="$CRO Price" value="$0,1160" />
-    <Box title="Mayflower Lifetime" value="11 Days" />
+    <Box title="$CRO Balance" value="0 ($0)" />
+    <Box title="$CRO" value="$0" />
   </div>
   <div>
     <Box title="Current APY" value="300.001%" valueSize="large" />
-    <Box title="Next Rebase" value="0" valueSize="large" />
+    <Box title="Next Rebase" value="..." valueSize="large" />
   </div>
   <div>
-    <Box title="Metis Liquiditt Value" value="185 $METIS" />
-    <Box title="Treasury Assets" value="72.5 $METIS" />
-    <Box title="RFV Market Value" value="106 $METIS" />
+    <Box title="Next Reward Yield" value="0.04189%" />
+    <Box title="Next Reward Value" value="0 ($0)" />
+    <Box title="Your Earnings/5 Days" value="0 ($0)" />
   </div>
 </div>
 
