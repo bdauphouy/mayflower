@@ -67,7 +67,7 @@
 
 <style lang="scss">
   aside {
-    width: 300px;
+    min-width: 300px;
     border-right: solid 1px $color-gray-2;
     display: flex;
     flex-direction: column;
