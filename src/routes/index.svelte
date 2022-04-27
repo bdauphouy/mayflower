@@ -65,6 +65,11 @@
 
     div {
       display: flex;
+      flex-wrap: wrap;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+      } 
 
       &:first-child {
         background: $color-dark-gray;

@@ -50,7 +50,9 @@
 </script>
 
 <aside>
-  <img src="/logo.svg" alt="logo mayflower finance" />
+  <a href="/">
+    <img src="/logo.svg" alt="logo mayflower finance" />
+  </a>
 
   <ul class="sidebar-items">
     {#each sidebarItems as { title, route, iconPath }}
@@ -75,16 +77,44 @@
     gap: 5rem;
     padding: 3.5rem 0;
 
+    img {
+      width: 50%; 
+
+      @media (max-width: 1024px) {
+        width: 50px;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      position: fixed;
+      background-color: $color-black;
+      height: 100%;
+      min-width: auto;
+      width: 80px;
+      z-index: 99;
+      gap: 3rem;
+      padding: 3rem 0;
+      overflow: auto;
+    }
+
     .sidebar-items {
       display: flex;
       flex-direction: column;
       margin-left: 30px;
       gap: 4rem;
+
+      @media (max-width: 1024px) {
+        margin-left: 0;
+      }
     }
 
     .social-links {
       display: flex;
       gap: 1rem;
+
+      @media (max-width: 1024px) {
+        flex-direction: column;
+      }
     }
   }
 </style>

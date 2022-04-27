@@ -19,6 +19,10 @@
     position: relative;
     padding: 0 1.5rem;
 
+    @media (max-width: 1024px) {
+      padding-right: 0;
+    }
+
     &.active,
     &:hover {
       a {
@@ -68,6 +72,13 @@
       gap: 1.5rem;
       font-weight: 400;
       transition: color 300ms;
+
+      h3 {
+        @media (max-width: 1024px) {
+          width: 0;
+          overflow: hidden;
+        }
+      }
 
       img {
         filter: brightness(0.77);

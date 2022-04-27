@@ -41,6 +41,11 @@
     gap: 1rem;
     align-items: center;
 
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
     > div {
       &:first-child {
         display: flex;
@@ -54,7 +59,7 @@
         }
 
         > div:not(.tooltip) {
-          width: 24px;
+          min-width: 24px;
           height: 24px;
           background-color: $color-gray;
           border-radius: 50%;
@@ -83,6 +88,10 @@
           background-color: $color-dark-gray;
           transition: opacity 300ms 0ms, visibility 0ms 300ms;
 
+          @media (max-width: 768px) {
+            background-color: $color-black;
+          }
+
           &.black,
           &.black::after {
             background-color: $color-black;
@@ -98,6 +107,10 @@
             background-color: $color-dark-gray;
             border-radius: 0.3rem;
             transform: translate(-50%, -12px) rotate(45deg);
+          
+            @media (max-width: 768px) {
+              background-color: $color-black;
+            }
           }
 
           p {

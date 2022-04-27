@@ -19,6 +19,11 @@
     width: 20ch;
     color: $color-white;
 
+    @media (max-width: 768px) {
+      padding: 0.8rem 1.2rem;
+      width: 18ch; 
+    }
+
     cursor: pointer;
     text-align: center;
     position: relative;
@@ -30,6 +35,10 @@
       font-size: $text-xl;
       position: relative;
       z-index: 1;
+
+      @media (max-width: 768px) {
+        font-size: $text-lg;
+      }
     }
 
     &:hover {

@@ -53,6 +53,14 @@
     gap: 4rem;
     align-self: flex-end;
     margin-bottom: 3.5rem;
+    flex-wrap: wrap;
+
+    @media (max-width: 1024px) {
+      width: 100%;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
 
     h3 {
       color: $color-white;

@@ -52,11 +52,13 @@
       justify-content: space-between;
       margin-top: 0.8rem;
       transition: border-color 300ms;
-
+      
       input {
         padding: 0.8rem 1.2rem;
         flex: 1;
-
+        width: 100%;
+        min-width: 100px;
+        
         &::-webkit-outer-spin-button,
         &::-webkit-inner-spin-button {
           -webkit-appearance: none;

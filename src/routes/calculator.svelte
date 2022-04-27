@@ -74,8 +74,13 @@
     border-radius: 0.3rem;
     padding: 2.5rem;
 
+    @media (max-width: 768px) {
+      padding: 1.5rem;
+    }
+
     div {
       display: flex;
+      flex-wrap: wrap;
     }
 
     h3 {
@@ -106,6 +111,7 @@
         color: $color-white;
         display: flex;
         justify-content: space-between;
+        gap: .5rem;
       }
     }
   }

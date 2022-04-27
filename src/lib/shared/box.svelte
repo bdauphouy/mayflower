@@ -19,6 +19,12 @@
     gap: 0.6rem;
     padding: 2.5rem;
     border-radius: 0.3rem;
+    min-width: 300px;
+
+    @media (max-width: 768px) {
+      min-width: auto;
+      padding: 1.5rem;
+    }
 
     h3 {
       color: $color-pink;
@@ -36,12 +42,20 @@
     &.normal {
       h4 {
         font-size: $text-2xl;
+
+        @media (max-width: 768px) {
+          font-size: $text-xl;
+        }
       }
     }
 
     &.large {
       h4 {
         font-size: $text-3xl;
+
+        @media (max-width: 768px) {
+          font-size: $text-2xl;
+        }
       }
     }
   }

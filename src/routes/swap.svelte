@@ -173,6 +173,10 @@
     border-radius: 0.3rem;
     padding: 2.5rem;
 
+    @media (max-width: 768px) {
+      padding: 1.5rem;
+    }
+
     h3 {
       font-size: $text-2xl;
       color: $color-white;
@@ -197,6 +201,11 @@
         border-radius: 0.3rem;
         margin-top: 1.25rem;
         gap: 2rem;
+
+        @media (max-width: 768px) {
+          padding: 0;
+          background-color: transparent;
+        }
       }
     }
 
@@ -229,6 +238,11 @@
           padding: 2.5rem;
           border-radius: 0.3rem;
           margin-top: 1.25rem;
+
+          @media (max-width: 768px) {
+            padding: 0;
+            background-color: transparent;
+          }
         }
       }
     }
@@ -237,6 +251,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
 
       div {
         display: flex;
@@ -280,6 +295,16 @@
       transition: border-color 300ms;
       cursor: pointer;
 
+      @media (max-width: 768px) {
+        width: 40px;
+        height: 40px;
+
+        img {
+          width: 50%;
+          height: 50%;
+        }
+      }
+
       &:hover,
       &:active {
         border-color: $color-gray;
@@ -298,6 +323,11 @@
       display: flex;
       flex-direction: column;
 
+      @media (max-width: 768px) {
+        padding: 0;
+        background-color: transparent;
+      }
+
       h3 {
         font-size: $text-xl;
         align-self: center;
@@ -315,6 +345,7 @@
           color: $color-white;
           display: flex;
           justify-content: space-between;
+          gap: .5rem;
         }
       }
     }
@@ -323,6 +354,10 @@
       display: flex;
       gap: 2rem;
       justify-content: flex-end;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+      }
     }
   }
 </style>

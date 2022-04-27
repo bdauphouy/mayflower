@@ -20,6 +20,10 @@
       color: $color-gray;
       font-weight: 500;
       font-size: $text-xl;
+
+      @media (max-width: 768px) {
+        font-size: $text-lg;
+      }
     }
   }
 </style>

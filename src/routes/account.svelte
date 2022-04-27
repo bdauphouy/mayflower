@@ -51,7 +51,7 @@
 <div class="container">
   <div>
     <Box title="$CRO Balance" value="{croBalance} (${(croBalance * croPrice).toLocaleString()})" />
-    <Box title="$CRO" value="$0" />
+    <Box title="$CRO" value="${croPrice.toLocaleString()}" />
   </div>
   <div>
     <Box title="Current APY" value="{currentAPY}%" valueSize="large" />
@@ -72,6 +72,11 @@
 
     div {
       display: flex;
+      flex-wrap: wrap;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+      } 
 
       &:first-child {
         background: $color-dark-gray;

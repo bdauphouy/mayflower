@@ -23,6 +23,11 @@
       padding: 3rem 6rem;
       display: flex;
       flex-direction: column;
+
+      @media (max-width: 1024px) {
+        padding-right: .8rem;
+        padding-left: calc(80px + .8rem);
+      }
     }
   }
 </style>

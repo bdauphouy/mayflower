@@ -4,7 +4,6 @@
 </script>
 
 <footer>
-  <div />
   <div class="footer-lists">
     <FooterList
       title="Socials"
@@ -58,11 +57,35 @@
     width: 100%;
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 8rem;
+
+    @media (max-width: 1024px) {
+      width: calc(100% - 80px);
+      margin-left: 80px
+    }
 
     .footer-lists {
       display: flex;
       gap: 8rem;
+      flex-wrap: wrap;
+
+      @media (max-width: 1024px) {
+        justify-content: space-between;
+        width: 100%;
+        gap: 4rem;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      justify-content: space-between;
+      gap: 4rem;
+    }
+
+    @media (max-width: 768px) {
+      padding: 2rem;
     }
   }
+  
 </style>
