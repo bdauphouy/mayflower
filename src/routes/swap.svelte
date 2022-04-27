@@ -3,8 +3,19 @@
   import TooltipInput from '$lib/shared/tooltip-input.svelte'
   import Button from '$lib/shared/button.svelte'
   import GasRadio from '$lib/shared/gas-radio.svelte'
+  import { account, connectWallet } from '../store'
 
   let currentTab = 1
+  let walletAddress
+  let connectWalletFunction
+
+  connectWallet.subscribe((cw) => {
+    connectWalletFunction = cw
+  })
+
+  account.subscribe((act) => {
+    walletAddress = act.walletAddress
+  })
 
   const handleFrom = () => {}
 
@@ -146,7 +157,9 @@
       <TooltipInput label="Slippage" helpTooltipText="lorem ipsum" />
     </div>
     <div class="button-container">
-      <Button>Connect Wallet</Button>
+      <Button on:click={connectWalletFunction}
+        >{walletAddress || 'Connect Wallet'}</Button
+      >
     </div>
     <div class="summary-container">
       <h3>Summary</h3>
@@ -345,7 +358,7 @@
           color: $color-white;
           display: flex;
           justify-content: space-between;
-          gap: .5rem;
+          gap: 0.5rem;
         }
       }
     }

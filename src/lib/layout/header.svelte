@@ -1,49 +1,31 @@
 <script>
   import Button from '../shared/button.svelte'
-  import { account } from '../../store'
+  import { account, connectWallet } from '../../store'
 
   let croBalance = 0
-  let walletAdress
+  let walletAddress
+  let connectWalletFunction
 
-  const connectWallet = async () => {
-    if (!window.ethereum) {
-      return
+  connectWallet.subscribe((cw) => {
+    connectWalletFunction = cw
+  })
+
+  account.subscribe((act) => {
+    if (act.croBalance) {
+      croBalance = act.croBalance
     }
 
-    const accounts = await window.ethereum
-      .request({
-        method: 'eth_requestAccounts',
-      })
-      .catch((err) => alert(err.message))
-
-    if (!accounts) return
-
-    croBalance = await window.ethereum.request({
-      method: 'eth_getBalance',
-      // params: [accounts[0], 'latest'],
-      params: ['0xB7e390864a90b7b923C9f9310C6F98aafE43F707', 'latest']
-    })
-
-
-    croBalance = parseInt(croBalance.toString(10)) / 10e17
-
-    walletAdress = accounts[0]
-
-    account.update((account) => {
-      return {
-        ...account,
-        walletAdress,
-        croBalance,
-      }
-    })
-  }
+    walletAddress = act.walletAddress
+  })
 </script>
 
 <header>
   <h3>
     $CRO Balance: <span>{Math.round(croBalance * 1000) / 1000}</span>
   </h3>
-  <Button on:click={connectWallet}>{walletAdress || 'Connect Wallet'}</Button>
+  <Button on:click={connectWalletFunction}
+    >{walletAddress || 'Connect Wallet'}</Button
+  >
 </header>
 
 <style lang="scss">
