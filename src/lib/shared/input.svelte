@@ -75,7 +75,6 @@
         padding: 0 1.2rem;
         background-color: $color-pink;
         border-radius: 0.3rem;
-        cursor: pointer;
         display: flex;
         align-items: center;
         gap: 1rem;
@@ -84,6 +83,7 @@
         &:not(:disabled):hover,
         &:not(:disabled):focus {
           background-color: rgba($color-pink, 0.6);
+          cursor: pointer;
         }
 
         img {

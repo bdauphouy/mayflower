@@ -24,11 +24,13 @@
       color: $color-pink;
       font-weight: 400;
       font-size: $text-md;
+      text-align: center;
     }
 
     h4 {
       color: $color-white;
       font-weight: 500;
+      text-align: center;
     }
 
     &.normal {

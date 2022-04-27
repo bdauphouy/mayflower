@@ -1,10 +1,19 @@
 <script>
   import Box from '$lib/shared/box.svelte'
+  import { account } from '../store'
+
+  let croBalance = 0
+
+  account.subscribe((value) => {
+    if (value) {
+      croBalance = value.croBalance
+    }
+  })
 </script>
 
 <div class="container">
   <div>
-    <Box title="$CRO Balance" value="0 ($0)" />
+    <Box title="$CRO Balance" value="{croBalance} ($0)" />
     <Box title="$CRO" value="$0" />
   </div>
   <div>

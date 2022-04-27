@@ -4,7 +4,7 @@
   import Button from '$lib/shared/button.svelte'
   import GasRadio from '$lib/shared/gas-radio.svelte'
 
-  let currentTab = 3
+  let currentTab = 1
 
   const handleFrom = () => {}
 

@@ -1,10 +1,23 @@
-<button><span><slot /></span></button>
+<script>
+  import { createEventDispatcher } from 'svelte'
+
+  const dispatch = createEventDispatcher()
+
+  const handleClick = () => {
+    dispatch('click')
+  }
+</script>
+
+<button on:click={handleClick}><span><slot /></span></button>
 
 <style lang="scss">
   button {
     background-image: linear-gradient(to right, $color-blue, $color-purple);
     border-radius: 2rem;
     padding: 0.8rem 2rem;
+    text-overflow: ellipsis;
+    width: 20ch;
+    color: $color-white;
 
     cursor: pointer;
     text-align: center;

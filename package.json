@@ -24,6 +24,7 @@
   },
   "type": "module",
   "dependencies": {
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "web3": "^1.7.3"
   }
 }
