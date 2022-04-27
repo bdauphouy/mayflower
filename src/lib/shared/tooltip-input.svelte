@@ -4,6 +4,7 @@
   export let type = 'number'
   export let label
   export let helpTooltipText
+  export let helpTooltipTheme = 'black'
   export let placeholder
 
   const id = uuidv4()
@@ -18,7 +19,7 @@
       <div>
         <img src="/help.svg" alt="icon help tooltip" />
       </div>
-      <div class="tooltip">
+      <div class="tooltip {helpTooltipTheme}">
         <p>
           {helpTooltipText}
         </p>
@@ -39,7 +40,6 @@
     justify-content: space-between;
     gap: 1rem;
     align-items: center;
-    margin-top: 1.25rem;
 
     > div {
       &:first-child {
@@ -75,13 +75,18 @@
           opacity: 0;
           position: absolute;
           width: 150px;
-          background-color: $color-black;
           bottom: 40px;
           border-radius: 0.3rem;
           padding: 1rem;
           right: 0;
           transform: translateX(63px);
+          background-color: $color-dark-gray;
           transition: opacity 300ms 0ms, visibility 0ms 300ms;
+
+          &.black,
+          &.black::after {
+            background-color: $color-black;
+          }
 
           &::after {
             content: '';
@@ -90,7 +95,7 @@
             bottom: -20px;
             width: 20px;
             height: 20px;
-            background-color: $color-black;
+            background-color: $color-dark-gray;
             border-radius: 0.3rem;
             transform: translate(-50%, -12px) rotate(45deg);
           }

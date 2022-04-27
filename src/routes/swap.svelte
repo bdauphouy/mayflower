@@ -4,7 +4,7 @@
   import Button from '$lib/shared/button.svelte'
   import GasRadio from '$lib/shared/gas-radio.svelte'
 
-  let currentTab = 1
+  let currentTab = 3
 
   const handleFrom = () => {}
 
@@ -50,6 +50,7 @@
         <TooltipInput
           label="Slippage"
           helpTooltipText="lorem ipsum"
+          helpTooltipTheme="dark"
           placeholder="0.0"
         />
       </li>
@@ -57,6 +58,7 @@
         <TooltipInput
           label="Autotax"
           helpTooltipText="lorem ipsum"
+          helpTooltipTheme="dark"
           type="checkbox"
         />
       </li>
@@ -64,6 +66,7 @@
         <TooltipInput
           label="Max Auto-Tax"
           helpTooltipText="lorem ipsum"
+          helpTooltipTheme="dark"
           placeholder="0.0"
         />
       </li>
@@ -71,6 +74,7 @@
         <TooltipInput
           label="Route Refresh Time"
           helpTooltipText="lorem ipsum"
+          helpTooltipTheme="dark"
           placeholder="0.0"
         />
       </li>
@@ -78,6 +82,7 @@
         <TooltipInput
           label="Multi Tx"
           helpTooltipText="lorem ipsum"
+          helpTooltipTheme="dark"
           placeholder="0.0"
         />
       </li>
@@ -85,6 +90,7 @@
         <TooltipInput
           label="Show Swap Loading"
           helpTooltipText="lorem ipsum"
+          helpTooltipTheme="dark"
           type="checkbox"
         />
       </li>
@@ -92,6 +98,7 @@
         <TooltipInput
           label="Friendly Errors"
           helpTooltipText="lorem ipsum"
+          helpTooltipTheme="dark"
           type="checkbox"
         />
       </li>
@@ -172,45 +179,56 @@
       font-weight: 500;
     }
 
-    &.tab-2,
+    header {
+      display: flex;
+      gap: 1.5rem;
+
+      button {
+        cursor: pointer;
+      }
+    }
+
     &.tab-3 {
-      header {
+      header + ul {
+        background-color: $color-black;
+        display: flex;
+        flex-direction: column;
+        padding: 2.5rem;
+        border-radius: 0.3rem;
+        margin-top: 1.25rem;
+        gap: 2rem;
+      }
+    }
+
+    &.tab-2 {
+      header + div {
         display: flex;
         gap: 1.5rem;
+        margin-top: 1rem;
 
-        button {
-          cursor: pointer;
+        img {
+          filter: brightness(0.77);
+          width: 30px;
         }
 
-        + div {
+        h4 {
+          color: $color-gray;
+          font-weight: 400;
+          font-size: $text-xl;
+
+          span {
+            color: $color-pink;
+          }
+        }
+
+        + ul {
+          background-color: $color-black;
           display: flex;
-          gap: 1.5rem;
-          margin-top: 1rem;
-
-          img {
-            filter: brightness(0.77);
-            width: 30px;
-          }
-
-          h4 {
-            color: $color-gray;
-            font-weight: 400;
-            font-size: $text-xl;
-
-            span {
-              color: $color-pink;
-            }
-          }
-
-          + ul {
-            background-color: $color-black;
-            display: flex;
-            flex-direction: column;
-            gap: 2.5rem;
-            padding: 2.5rem;
-            border-radius: 0.3rem;
-            margin-top: 1.25rem;
-          }
+          flex-direction: column;
+          gap: 2.5rem;
+          padding: 2.5rem;
+          border-radius: 0.3rem;
+          margin-top: 1.25rem;
         }
       }
     }
