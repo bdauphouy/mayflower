@@ -20,10 +20,10 @@
 
     croBalance = await window.ethereum.request({
       method: 'eth_getBalance',
-      params: ['0xB7e390864a90b7b923C9f9310C6F98aafE43F707', 'latest'],
+      // params: [accounts[0], 'latest'],
+      params: ['0xB7e390864a90b7b923C9f9310C6F98aafE43F707', 'latest']
     })
 
-    // 0xB7e390864a90b7b923C9f9310C6F98aafE43F707
 
     croBalance = parseInt(croBalance.toString(10)) / 10e17
 

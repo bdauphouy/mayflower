@@ -36,6 +36,10 @@
         font-weight: 400;
         font-size: $text-md;
         cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }

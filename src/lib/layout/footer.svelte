@@ -14,10 +14,6 @@
           href: 'https://discord.com',
         },
         {
-          title: 'Telegram',
-          href: 'https://telegram.com',
-        },
-        {
           title: 'Twitter',
           href: 'https://twitter.com',
         },
@@ -44,7 +40,7 @@
           href: 'https://google.com',
         },
         {
-          title: 'DAO (coming...)',
+          title: 'DAO',
           href: 'https://google.com',
         },
       ]}

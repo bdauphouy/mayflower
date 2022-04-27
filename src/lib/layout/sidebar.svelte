@@ -37,9 +37,9 @@
       iconPath: '/discord.svg',
     },
     {
-      title: 'Télégram',
-      href: 'https://telegram.com',
-      iconPath: '/telegram.svg',
+      title: 'Gitbook',
+      href: 'https://gitbook.com',
+      iconPath: '/gitbook.svg',
     },
     {
       title: 'Twitter',
