@@ -23,6 +23,10 @@
       padding-right: 0;
     }
 
+    img {
+      height: 30px;
+    }
+
     &.active,
     &:hover {
       a {

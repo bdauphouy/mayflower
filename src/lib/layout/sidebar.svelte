@@ -2,6 +2,8 @@
   import SidebarItem from '../shared/sidebar-item.svelte'
   import SocialMedia from '../shared/social-media.svelte'
 
+  const presale = import.meta.env.VITE_PUBLIC_PRESALE === 'true'
+
   const sidebarItems = [
     {
       title: 'Dashboard',
@@ -29,6 +31,14 @@
       iconPath: '/sidebar-icons/chart.svg',
     },
   ]
+
+  if (presale) {
+    sidebarItems.push({
+      title: 'Presale',
+      route: '/presale',
+      iconPath: '/sidebar-icons/presale.svg',
+    })
+  }
 
   const socialLinks = [
     {
