@@ -33,17 +33,17 @@
   const socialLinks = [
     {
       title: 'Discord',
-      href: 'https://discord.com',
+      href: 'https://discord.gg/Ej4SwpxJVR',
       iconPath: '/discord.svg',
     },
     {
       title: 'Gitbook',
-      href: 'https://gitbook.com',
+      href: 'https://mayflowerfinance.gitbook.io/mayflower-finance1/',
       iconPath: '/gitbook.svg',
     },
     {
       title: 'Twitter',
-      href: 'https://twitter.com',
+      href: 'https://twitter.com/MayFFinance',
       iconPath: '/twitter.svg',
     },
   ]
@@ -78,7 +78,7 @@
     padding: 3.5rem 0;
 
     img {
-      width: 50%; 
+      width: 50%;
 
       @media (max-width: 1024px) {
         width: 50px;
