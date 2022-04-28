@@ -2,6 +2,7 @@
   import { v4 as uuidv4 } from 'uuid'
 
   export let type = 'number'
+  export let value = ''
   export let label
   export let placeholder
   export let rightButtonText
@@ -16,8 +17,16 @@
   <label for={id}>
     {label}
     <div>
-      <input {type} {id} {placeholder} />
+      <input
+        value={parseFloat(value.replace(',', ''))}
+        {type}
+        {id}
+        {placeholder}
+      />
       {#if rightButtonText && rightButtonHandler}
+        {#if label === 'From'}
+          <button class="max">MAX</button>
+        {/if}
         <button disabled={rightButtonDisabled} on:click={rightButtonHandler}>
           {#if rightButtonIconPath}
             <img src={rightButtonIconPath} alt="icon {label}" />
@@ -52,13 +61,13 @@
       justify-content: space-between;
       margin-top: 0.8rem;
       transition: border-color 300ms;
-      
+
       input {
         padding: 0.8rem 1.2rem;
         flex: 1;
         width: 100%;
         min-width: 100px;
-        
+
         &::-webkit-outer-spin-button,
         &::-webkit-inner-spin-button {
           -webkit-appearance: none;
@@ -71,25 +80,33 @@
       }
 
       button {
-        font-size: $text-lg;
-        font-weight: 400;
-        color: $color-black;
-        padding: 0 1.2rem;
-        background-color: $color-pink;
-        border-radius: 0.3rem;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        transition: background-color 300ms;
-
-        &:not(:disabled):hover,
-        &:not(:disabled):focus {
-          background-color: rgba($color-pink, 0.6);
+        &.max {
+          color: $color-pink;
+          margin-right: 1rem;
           cursor: pointer;
         }
 
-        img {
-          width: 20px;
+        &:not(.max) {
+          font-size: $text-lg;
+          font-weight: 400;
+          color: $color-black;
+          padding: 0 1.2rem;
+          background-color: $color-pink;
+          border-radius: 0.3rem;
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          transition: background-color 300ms;
+
+          &:not(:disabled):hover,
+          &:not(:disabled):focus {
+            background-color: rgba($color-pink, 0.6);
+            cursor: pointer;
+          }
+
+          img {
+            width: 20px;
+          }
         }
       }
     }

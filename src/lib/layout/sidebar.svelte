@@ -88,8 +88,6 @@
     padding: 3.5rem 0;
 
     img {
-      width: 50%;
-
       @media (max-width: 1024px) {
         width: 50px;
       }

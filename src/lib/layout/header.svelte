@@ -1,18 +1,13 @@
 <script>
   import Button from '../shared/button.svelte'
-  import { account, connectWallet } from '../../store'
+  import { account, connectWallet, currency } from '../../store'
 
-  let croBalance = 0
+  let balance = 0
   let walletAddress
-  let connectWalletFunction
-
-  connectWallet.subscribe((cw) => {
-    connectWalletFunction = cw
-  })
 
   account.subscribe((act) => {
-    if (act.croBalance) {
-      croBalance = act.croBalance
+    if (act.balance) {
+      balance = act.balance
     }
 
     walletAddress = act.walletAddress
@@ -21,11 +16,9 @@
 
 <header>
   <h3>
-    $CRO Balance: <span>{Math.round(croBalance * 1000) / 1000}</span>
+    ${$currency} Balance: <span>{Math.round(balance * 1000) / 1000}</span>
   </h3>
-  <Button on:click={connectWalletFunction}
-    >{walletAddress || 'Connect Wallet'}</Button
-  >
+  <Button on:click={$connectWallet}>{walletAddress || 'Connect Wallet'}</Button>
 </header>
 
 <style lang="scss">

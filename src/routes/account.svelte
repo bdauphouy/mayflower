@@ -23,35 +23,42 @@
 
 <script>
   import Box from '$lib/shared/box.svelte'
-  import { account } from '../store'
+  import { account, currency } from '../store'
 
   export let data
 
-  let croBalance = 0
+  let balance = 0
   let nextRewardYield = 0
   let nextRewardValue = 0
   let yourEarningsFiveDays = 0
   let currentAPY = 0
-  let croPrice = 0
+  let price = 0
 
-
-  account.subscribe(act => {
-    if (act.croBalance) {
-      croBalance = act.croBalance.toLocaleString()
+  account.subscribe((act) => {
+    if (act.balance) {
+      balance = act.balance.toLocaleString()
     }
 
     nextRewardYield = act.nextRewardYield.toLocaleString()
-    nextRewardValue = (act.nextRewardYield * croBalance).toLocaleString()
-    yourEarningsFiveDays = (act.nextRewardYield * croBalance * 48 * 5).toLocaleString()
+    nextRewardValue = (act.nextRewardYield * balance).toLocaleString()
+    yourEarningsFiveDays = (
+      act.nextRewardYield *
+      balance *
+      48 *
+      5
+    ).toLocaleString()
     currentAPY = act.currentAPY.toLocaleString()
-    croPrice = parseFloat(data.pair.priceUsd)
+    price = parseFloat(data.pair.priceUsd)
   })
 </script>
 
 <div class="container">
   <div>
-    <Box title="$CRO Balance" value="{croBalance} (${(croBalance * croPrice).toLocaleString()})" />
-    <Box title="$CRO" value="${croPrice.toLocaleString()}" />
+    <Box
+      title="${$currency} Balance"
+      value="{balance} (${(balance * price).toLocaleString()})"
+    />
+    <Box title="${$currency}" value="${price.toLocaleString()}" />
   </div>
   <div>
     <Box title="Current APY" value="{currentAPY}%" valueSize="large" />
@@ -59,8 +66,16 @@
   </div>
   <div>
     <Box title="Next Reward Yield" value="{nextRewardYield}%" />
-    <Box title="Next Reward Value" value="{nextRewardValue} (${(nextRewardValue * croPrice).toLocaleString()})" />
-    <Box title="Your Earnings/5 Days" value="{yourEarningsFiveDays} (${(yourEarningsFiveDays * croPrice).toLocaleString()})" />
+    <Box
+      title="Next Reward Value"
+      value="{nextRewardValue} (${(nextRewardValue * price).toLocaleString()})"
+    />
+    <Box
+      title="Your Earnings/5 Days"
+      value="{yourEarningsFiveDays} (${(
+        yourEarningsFiveDays * price
+      ).toLocaleString()})"
+    />
   </div>
 </div>
 
@@ -76,7 +91,7 @@
 
       @media (max-width: 768px) {
         flex-direction: column;
-      } 
+      }
 
       &:first-child {
         background: $color-dark-gray;

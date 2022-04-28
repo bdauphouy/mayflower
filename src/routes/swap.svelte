@@ -3,15 +3,10 @@
   import TooltipInput from '$lib/shared/tooltip-input.svelte'
   import Button from '$lib/shared/button.svelte'
   import GasRadio from '$lib/shared/gas-radio.svelte'
-  import { account, connectWallet } from '../store'
+  import { account, connectWallet, currency } from '../store'
 
   let currentTab = 1
   let walletAddress
-  let connectWalletFunction
-
-  connectWallet.subscribe((cw) => {
-    connectWalletFunction = cw
-  })
 
   account.subscribe((act) => {
     walletAddress = act.walletAddress
@@ -143,7 +138,7 @@
     <Input
       label="To"
       placeholder="0.00"
-      rightButtonText="MFF"
+      rightButtonText={$currency}
       rightButtonHandler={handleTo}
       rightButtonIconPath="/mff.svg"
       rightButtonDisabled
@@ -157,7 +152,7 @@
       <TooltipInput label="Slippage" helpTooltipText="lorem ipsum" />
     </div>
     <div class="button-container">
-      <Button on:click={connectWalletFunction}
+      <Button on:click={$connectWallet}
         >{walletAddress || 'Connect Wallet'}</Button
       >
     </div>
@@ -169,7 +164,7 @@
           <span>$409.10</span>
         </li>
         <li>
-          <span>MFF Price</span>
+          <span>{$currency} Price</span>
           <span>$0.15550</span>
         </li>
       </ul>

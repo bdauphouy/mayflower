@@ -1,13 +1,51 @@
+<script context="module">
+  export const load = async ({ fetch }) => {
+    const res = await fetch(
+      'https://api.dexscreener.io/latest/dex/pairs/cronos/0xa68466208F1A3Eb21650320D2520ee8eBA5ba623'
+    )
+
+    const data = await res.json()
+
+    if (res.ok) {
+      return {
+        props: {
+          data,
+        },
+      }
+    }
+
+    return {
+      status: res.status,
+      error: new Error('Error fetching the data'),
+    }
+  }
+</script>
+
 <script>
   import Box from '$lib/shared/box.svelte'
   import Input from '$lib/shared/input.svelte'
   import Range from '$lib/shared/range.svelte'
+  import { currency, account } from '../store'
 
-  const handleMFFAmount = () => {}
+  export let data
+
+  let price = 0
+  let balance = 0
+  let currentAPY = 0
+
+  account.subscribe((act) => {
+    if (act.balance) {
+      balance = act.balance.toLocaleString()
+    }
+    currentAPY = act.currentAPY.toLocaleString()
+    price = parseFloat(data.pair.priceUsd).toLocaleString()
+  })
+
+  const handleAmount = () => {}
 
   const handlePriceAtPurchase = () => {}
 
-  const handleFuturMFFPrice = () => {}
+  const handleFuturPrice = () => {}
 
   const handleRange = (value) => {}
 </script>
@@ -15,19 +53,19 @@
 <div class="container">
   <h3>Calculator</h3>
   <div>
-    <Box title="$MFF Price" value="$0" />
-    <Box title="APY" value="151,631.58%" />
-    <Box title="My MFF Balance" value="0 MFF" />
+    <Box title="${$currency} Price" value="${price}" />
+    <Box title="APY" value="{currentAPY}%" />
+    <Box title="My {$currency} Balance" value="{balance} {$currency}" />
   </div>
   <div>
     <div>
       <Input
-        label="MFF Amount"
-        placeholder="MFF Amount"
+        label="{$currency} Amount"
+        placeholder="{$currency} Amount"
         rightButtonText="MAX"
-        rightButtonHandler={handleMFFAmount}
+        rightButtonHandler={handleAmount}
       />
-      <Input label="APY (%)" placeholder="151.631" />
+      <Input label="APY (%)" value={currentAPY} />
     </div>
     <div>
       <Input
@@ -37,10 +75,10 @@
         rightButtonHandler={handlePriceAtPurchase}
       />
       <Input
-        label="Futur MFF price ($)"
+        label="Futur {$currency} price ($)"
         placeholder="0"
         rightButtonText="Current"
-        rightButtonHandler={handleFuturMFFPrice}
+        rightButtonHandler={handleFuturPrice}
       />
     </div>
   </div>
@@ -55,7 +93,7 @@
       <span>$0.00</span>
     </li>
     <li>
-      <span>MFF rewards estimation</span>
+      <span>{$currency} rewards estimation</span>
       <span>$0.00</span>
     </li>
     <li>
@@ -111,7 +149,7 @@
         color: $color-white;
         display: flex;
         justify-content: space-between;
-        gap: .5rem;
+        gap: 0.5rem;
       }
     }
   }

@@ -1,6 +1,7 @@
 <script>
   import FooterList from '../shared/footer-list.svelte'
   import Button from '../shared/button.svelte'
+  import { currency } from '../../store'
 </script>
 
 <footer>
@@ -45,7 +46,7 @@
       ]}
     />
   </div>
-  <Button>Buy $CRO</Button>
+  <Button>Buy ${$currency}</Button>
 </footer>
 
 <style lang="scss">
@@ -63,7 +64,7 @@
 
     @media (max-width: 1024px) {
       width: calc(100% - 80px);
-      margin-left: 80px
+      margin-left: 80px;
     }
 
     .footer-lists {
@@ -87,5 +88,4 @@
       padding: 2rem;
     }
   }
-  
 </style>

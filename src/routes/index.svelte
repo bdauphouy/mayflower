@@ -23,37 +23,37 @@
 
 <script>
   import Box from '$lib/shared/box.svelte'
-  import { account } from '../store'
+  import { account, currency } from '../store'
 
   export let data
 
   let currentAPY = 0
   let marketCap = 0
-  let croPrice = 0
-  let mffLifetime = 0
+  let price = 0
+  let lifetime = 0
 
   account.subscribe((act) => {
     currentAPY = act.currentAPY.toLocaleString()
-    mffLifetime = act.mffLifetime.toLocaleString()
+    lifetime = act.lifetime.toLocaleString()
     marketCap = Math.round(data.pair.fdv).toLocaleString()
-    croPrice = parseFloat(data.pair.priceUsd).toLocaleString()
+    price = parseFloat(data.pair.priceUsd).toLocaleString()
   })
 </script>
 
 <div class="container">
   <div>
     <Box title="Market Cap" value="${marketCap}" />
-    <Box title="$CRO Price" value="${croPrice}" />
-    <Box title="Mayflower Lifetime" value="{mffLifetime} Days" />
+    <Box title="${$currency} Price" value="${price}" />
+    <Box title="Mayflower Lifetime" value="{lifetime} Days" />
   </div>
   <div>
     <Box title="Current APY" value="{currentAPY}%" valueSize="large" />
     <Box title="Next Rebase" value="0" valueSize="large" />
   </div>
   <div>
-    <Box title="Metis Liquiditt Value" value="{marketCap} $METIS" />
-    <Box title="Treasury Assets" value="? $METIS" />
-    <Box title="RFV Market Value" value="? $METIS" />
+    <Box title="{$currency} Liquiditt Value" value="{marketCap} ${$currency}" />
+    <Box title="Treasury Assets" value="? ${$currency}" />
+    <Box title="RFV Market Value" value="? ${$currency}" />
   </div>
 </div>
 
@@ -69,7 +69,7 @@
 
       @media (max-width: 768px) {
         flex-direction: column;
-      } 
+      }
 
       &:first-child {
         background: $color-dark-gray;

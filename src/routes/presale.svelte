@@ -16,6 +16,7 @@
 <script>
   import Input from '../lib/shared/input.svelte'
   import Button from '../lib/shared/button.svelte'
+  import { currency } from '../store'
 </script>
 
 <div class="container">
@@ -23,7 +24,7 @@
   <div>
     <Input
       label="Enter amount"
-      placeholder="MFF Amount"
+      placeholder="{$currency} Amount"
       rightButtonText="MAX"
       rightButtonHandler={() => false}
       rightButtonDisabled
