@@ -18,9 +18,11 @@
     cursor: pointer;
     position: relative;
     padding: 0 1.5rem;
+    display: flex;
 
     @media (max-width: 1024px) {
       padding-right: 0;
+      justify-content: center;
     }
 
     img {

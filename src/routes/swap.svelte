@@ -4,11 +4,12 @@
   import Button from '$lib/shared/button.svelte'
   import GasRadio from '$lib/shared/gas-radio.svelte'
   import { account, connectWallet, currency } from '../store'
+  import { onDestroy } from 'svelte'
 
   let currentTab = 1
   let walletAddress
 
-  account.subscribe((act) => {
+  const unsubscribe = account.subscribe((act) => {
     walletAddress = act.walletAddress
   })
 
@@ -19,6 +20,10 @@
   const go = (tab) => {
     currentTab = tab
   }
+
+  onDestroy(() => {
+    unsubscribe()
+  })
 </script>
 
 {#if currentTab === 2}

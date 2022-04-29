@@ -1,8 +1,24 @@
 <script>
   import '../styles/global.scss'
+  import Cookies from 'js-cookie'
   import Sidebar from '$lib/layout/sidebar.svelte'
   import Header from '$lib/layout/header.svelte'
   import Footer from '$lib/layout/footer.svelte'
+  import { onMount } from 'svelte'
+  import { account } from '../store'
+
+  onMount(() => {
+    const cookieAccount = Cookies.get('mayflower-account-data')
+
+    if (cookieAccount) {
+      account.update((act) => {
+        return {
+          ...act,
+          ...JSON.parse(Cookies.get('mayflower-account-data')),
+        }
+      })
+    }
+  })
 </script>
 
 <div class="container">
@@ -25,8 +41,8 @@
       flex-direction: column;
 
       @media (max-width: 1024px) {
-        padding-right: .8rem;
-        padding-left: calc(80px + .8rem);
+        padding-right: 0.8rem;
+        padding-left: calc(80px + 0.8rem);
       }
     }
   }
