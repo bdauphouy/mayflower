@@ -23,7 +23,8 @@
 
 <script>
   import Box from '$lib/shared/box.svelte'
-  import { account, currency } from '../store'
+  import { account, currency, nextRebase, formatSeconds } from '../store'
+  import { onDestroy } from 'svelte'
 
   export let data
 
@@ -31,12 +32,27 @@
   let marketCap = 0
   let price = 0
   let lifetime = 0
+  let balance = 0
+  let nextRebaseSeconds
 
-  account.subscribe((act) => {
+  const unsubscribeAccount = account.subscribe((act) => {
+    if (act.balance || act.balance === 0) {
+      balance = act.balance.toLocaleString()
+    }
+
     currentAPY = act.currentAPY.toLocaleString()
     lifetime = act.lifetime.toLocaleString()
     marketCap = Math.round(data.pair.fdv).toLocaleString()
     price = parseFloat(data.pair.priceUsd).toLocaleString()
+  })
+
+  const unsubscribeNextRebase = nextRebase.subscribe((nr) => {
+    nextRebaseSeconds = nr.seconds
+  })
+
+  onDestroy(() => {
+    unsubscribeAccount()
+    unsubscribeNextRebase()
   })
 </script>
 
@@ -48,12 +64,16 @@
   </div>
   <div>
     <Box title="Current APY" value="{currentAPY}%" valueSize="large" />
-    <Box title="Next Rebase" value="0" valueSize="large" />
+    <Box
+      title="Next Rebase"
+      value={$formatSeconds(nextRebaseSeconds) || '...'}
+      valueSize="large"
+    />
   </div>
   <div>
     <Box title="{$currency} Liquiditt Value" value="{marketCap} ${$currency}" />
-    <Box title="Treasury Assets" value="? ${$currency}" />
-    <Box title="RFV Market Value" value="? ${$currency}" />
+    <Box title="Treasury Assets" value="{balance} ${$currency}" />
+    <Box title="RFV Market Value" value="{balance} ${$currency}" />
   </div>
 </div>
 

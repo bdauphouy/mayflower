@@ -1,16 +1,20 @@
 <script>
   import Button from '../shared/button.svelte'
   import { account, connectWallet, currency } from '../../store'
+  import { onDestroy } from 'svelte'
 
   let balance = 0
   let walletAddress
 
-  account.subscribe((act) => {
-    if (act.balance) {
+  const unsubscribe = account.subscribe((act) => {
+    if (act.balance || act.balance === 0) {
       balance = act.balance
+      walletAddress = act.walletAddress
     }
+  })
 
-    walletAddress = act.walletAddress
+  onDestroy(() => {
+    unsubscribe()
   })
 </script>
 

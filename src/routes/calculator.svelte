@@ -26,6 +26,7 @@
   import Input from '$lib/shared/input.svelte'
   import Range from '$lib/shared/range.svelte'
   import { currency, account } from '../store'
+  import { onDestroy } from 'svelte'
 
   export let data
 
@@ -33,8 +34,8 @@
   let balance = 0
   let currentAPY = 0
 
-  account.subscribe((act) => {
-    if (act.balance) {
+  const unsubscribe = account.subscribe((act) => {
+    if (act.balance || act.balance === 0) {
       balance = act.balance.toLocaleString()
     }
     currentAPY = act.currentAPY.toLocaleString()
@@ -48,6 +49,10 @@
   const handleFuturPrice = () => {}
 
   const handleRange = (value) => {}
+
+  onDestroy(() => {
+    unsubscribe()
+  })
 </script>
 
 <div class="container">
