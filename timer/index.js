@@ -16,9 +16,7 @@ const nextRebase = {
 app.use(
   cors({
     origin:
-      process.env.MODE === 'dev'
-        ? 'http://localhost:3000'
-        : 'https://mayflower.fr',
+      process.env.MODE === 'dev' ? 'http://localhost:3000' : process.env.URL,
   })
 )
 

@@ -1,27 +1,33 @@
 <script>
-  export let label
-  export let handler
-
+  import { createEventDispatcher } from 'svelte'
   import { v4 as uuidv4 } from 'uuid'
+
+  export let label
+  export let value
+  export let max = 100
+  export let step = 1
+
+  const dispatch = createEventDispatcher()
 
   const id = uuidv4()
 
-  let rangeValue = 20
-
-  const updateRangeValue = (e) => {
-    rangeValue = e.target.value
-    handler(rangeValue)
+  const handleInput = (e) => {
+    value = +e.target.value
+    dispatch('change', {
+      value,
+    })
   }
 </script>
 
 <div class="container">
   <label for={id}>{label}</label>
   <input
-    on:input={updateRangeValue}
-    style="background-size: {rangeValue}% 100%"
-    value={rangeValue}
+    on:input={handleInput}
+    style="background-size: {value / (max * 0.01)}% 100%"
     type="range"
-    step="any"
+    {step}
+    {max}
+    {value}
     {id}
   />
 </div>

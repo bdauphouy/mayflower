@@ -8,6 +8,7 @@ export const account = writable({
     (new Date() - new Date('2022/04/30')) / (1000 * 60 * 60 * 24)
   ),
   nextRewardYield: 0.06335,
+  interestRate: 0.0006365,
 })
 
 export const nextRebase = writable({
@@ -90,9 +91,9 @@ export const connectWallet = readable(async () => {
     balance,
   })}`
 
-  account.update((account) => {
+  account.update((act) => {
     return {
-      ...account,
+      ...act,
       walletAddress,
       balance,
     }

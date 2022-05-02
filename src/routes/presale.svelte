@@ -29,7 +29,7 @@
       rightButtonHandler={() => false}
       rightButtonDisabled
     />
-    <Button>Buy with USDC</Button>
+    <Button>Buy with $CRO</Button>
   </div>
 </div>
 

@@ -1,14 +1,30 @@
 <script>
+  import { createEventDispatcher } from 'svelte'
   import { v4 as uuidv4 } from 'uuid'
 
   export let type = 'number'
+  export let disabled = false
   export let value = ''
   export let label
   export let placeholder
   export let rightButtonText
-  export let rightButtonHandler
   export let rightButtonIconPath
   export let rightButtonDisabled = false
+
+  value = parseFloat(value.toString().replace(',', ''))
+
+  const dispatch = createEventDispatcher()
+
+  const handleRightButtonClick = () => {
+    dispatch('rightButtonClick')
+  }
+
+  const handleInput = (e) => {
+    value = type === 'number' ? +e.target.value : e.target.value
+    dispatch('change', {
+      value,
+    })
+  }
 
   const id = uuidv4()
 </script>
@@ -18,16 +34,21 @@
     {label}
     <div>
       <input
-        value={parseFloat(value.replace(',', ''))}
+        {disabled}
+        {value}
         {type}
         {id}
         {placeholder}
+        on:input={handleInput}
       />
-      {#if rightButtonText && rightButtonHandler}
+      {#if rightButtonText}
         {#if label === 'From'}
           <button class="max">MAX</button>
         {/if}
-        <button disabled={rightButtonDisabled} on:click={rightButtonHandler}>
+        <button
+          disabled={rightButtonDisabled}
+          on:click={handleRightButtonClick}
+        >
           {#if rightButtonIconPath}
             <img src={rightButtonIconPath} alt="icon {label}" />
           {/if}

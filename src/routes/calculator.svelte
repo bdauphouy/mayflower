@@ -26,29 +26,65 @@
   import Input from '$lib/shared/input.svelte'
   import Range from '$lib/shared/range.svelte'
   import { currency, account } from '../store'
-  import { onDestroy } from 'svelte'
+  import { onDestroy, onMount } from 'svelte'
 
   export let data
 
   let price = 0
   let balance = 0
   let currentAPY = 0
+  let interestRate = 0
 
   const unsubscribe = account.subscribe((act) => {
     if (act.balance || act.balance === 0) {
       balance = act.balance.toLocaleString()
     }
     currentAPY = act.currentAPY.toLocaleString()
+    interestRate = act.interestRate
     price = parseFloat(data.pair.priceUsd).toLocaleString()
   })
 
-  const handleAmount = () => {}
+  let amount = 0
+  let priceAtPurchase = 0
+  let futurePrice = 0
+  let days = 30
 
-  const handlePriceAtPurchase = () => {}
+  const handleAmount = () => {
+    amount = balance
+    calculate()
+  }
 
-  const handleFuturPrice = () => {}
+  const handlePriceAtPurchase = () => {
+    priceAtPurchase = price
+    calculate()
+  }
 
-  const handleRange = (value) => {}
+  const handleFuturPrice = () => {
+    futurePrice = price
+    calculate()
+  }
+
+  let initialInvestment = 0
+  let currentWealth = 0
+  let rewardsEstimation = 0
+  let potentialReturn = 0
+
+  const round = (n, d = 2) => Math.round(n * Math.pow(10, d)) / Math.pow(10, d)
+
+  const calculate = () => {
+    initialInvestment = round(priceAtPurchase * amount)
+    currentWealth = round(priceAtPurchase * amount)
+    rewardsEstimation = round(
+      Math.pow(1 + interestRate, 48 * days) * amount - amount
+    )
+    potentialReturn = round(
+      Math.max(rewardsEstimation * futurePrice, 0) + amount * priceAtPurchase
+    )
+  }
+
+  onMount(() => {
+    calculate()
+  })
 
   onDestroy(() => {
     unsubscribe()
@@ -68,42 +104,53 @@
         label="{$currency} Amount"
         placeholder="{$currency} Amount"
         rightButtonText="MAX"
-        rightButtonHandler={handleAmount}
+        bind:value={amount}
+        on:change={calculate}
+        on:rightButtonClick={handleAmount}
       />
-      <Input label="APY (%)" value={currentAPY} />
+      <Input disabled label="APY (%)" value={currentAPY} />
     </div>
     <div>
       <Input
         label="Price at purchase ($)"
         placeholder="0"
         rightButtonText="Current"
-        rightButtonHandler={handlePriceAtPurchase}
+        bind:value={priceAtPurchase}
+        on:change={calculate}
+        on:rightButtonClick={handlePriceAtPurchase}
       />
       <Input
-        label="Futur {$currency} price ($)"
+        label="Future {$currency} price ($)"
         placeholder="0"
         rightButtonText="Current"
-        rightButtonHandler={handleFuturPrice}
+        bind:value={futurePrice}
+        on:change={calculate}
+        on:rightButtonClick={handleFuturPrice}
       />
     </div>
   </div>
-  <Range label="30 Days" handler={handleRange} />
+  <Range
+    label="{days} Days"
+    max="365"
+    bind:value={days}
+    on:change={calculate}
+  />
   <ul>
     <li>
       <span>Your initial investment</span>
-      <span>$0.00</span>
+      <span>${initialInvestment.toLocaleString()}</span>
     </li>
     <li>
       <span>Current wealth</span>
-      <span>$0.00</span>
+      <span>${currentWealth.toLocaleString()}</span>
     </li>
     <li>
       <span>{$currency} rewards estimation</span>
-      <span>$0.00</span>
+      <span>${rewardsEstimation.toLocaleString()}</span>
     </li>
     <li>
       <span>Potential return</span>
-      <span>$0.00</span>
+      <span>${potentialReturn.toLocaleString()}</span>
     </li>
   </ul>
 </div>
