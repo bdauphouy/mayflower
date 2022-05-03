@@ -25,7 +25,7 @@
   import Box from '$lib/shared/box.svelte'
   import Input from '$lib/shared/input.svelte'
   import Range from '$lib/shared/range.svelte'
-  import { currency, account } from '../store'
+  import { currency, account, round } from '../store'
   import { onDestroy, onMount } from 'svelte'
 
   export let data
@@ -69,15 +69,13 @@
   let rewardsEstimation = 0
   let potentialReturn = 0
 
-  const round = (n, d = 2) => Math.round(n * Math.pow(10, d)) / Math.pow(10, d)
-
   const calculate = () => {
-    initialInvestment = round(priceAtPurchase * amount)
-    currentWealth = round(priceAtPurchase * amount)
-    rewardsEstimation = round(
+    initialInvestment = $round(priceAtPurchase * amount)
+    currentWealth = $round(priceAtPurchase * amount)
+    rewardsEstimation = $round(
       Math.pow(1 + interestRate, 48 * days) * amount - amount
     )
-    potentialReturn = round(
+    potentialReturn = $round(
       Math.max(rewardsEstimation * futurePrice, 0) + amount * priceAtPurchase
     )
   }

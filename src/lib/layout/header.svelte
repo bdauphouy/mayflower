@@ -1,6 +1,6 @@
 <script>
   import Button from '../shared/button.svelte'
-  import { account, connectWallet, currency } from '../../store'
+  import { account, connectWallet, currency, round } from '../../store'
   import { onDestroy } from 'svelte'
 
   let balance = 0
@@ -20,7 +20,7 @@
 
 <header>
   <h3>
-    ${$currency} Balance: <span>{Math.round(balance * 1000) / 1000}</span>
+    ${$currency} Balance: <span>{$round(balance, 3)}</span>
   </h3>
   <Button on:click={$connectWallet}>{walletAddress || 'Connect Wallet'}</Button>
 </header>

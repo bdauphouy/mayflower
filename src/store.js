@@ -108,3 +108,7 @@ export const formatSeconds = readable((fullSeconds) => {
 
   return `${minutes}:${seconds}`
 })
+
+export const round = readable(
+  (n, d = 2) => Math.round(n * Math.pow(10, d)) / Math.pow(10, d)
+)

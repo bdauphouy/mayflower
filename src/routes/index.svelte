@@ -23,7 +23,7 @@
 
 <script>
   import Box from '$lib/shared/box.svelte'
-  import { account, currency, nextRebase, formatSeconds } from '../store'
+  import { account, currency, nextRebase, formatSeconds, round } from '../store'
   import { onDestroy } from 'svelte'
 
   export let data
@@ -42,7 +42,7 @@
 
     currentAPY = act.currentAPY.toLocaleString()
     lifetime = act.lifetime.toLocaleString()
-    marketCap = Math.round(data.pair.fdv).toLocaleString()
+    marketCap = $round(data.pair.fdv, 0).toLocaleString()
     price = parseFloat(data.pair.priceUsd).toLocaleString()
   })
 
