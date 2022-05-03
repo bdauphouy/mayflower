@@ -9,7 +9,7 @@ const app = express()
 const nextRebaseInterval = process.env.INTERVAL
 
 const nextRebase = {
-  interval: nextRebaseInterval,
+  interval: parseInt(nextRebaseInterval),
   seconds: nextRebaseInterval,
 }
 
