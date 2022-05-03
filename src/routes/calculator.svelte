@@ -39,9 +39,11 @@
     if (act.balance || act.balance === 0) {
       balance = act.balance.toLocaleString()
     }
-    currentAPY = act.currentAPY.toLocaleString()
+
+    currentAPY = act.currentAPY
     interestRate = act.interestRate
-    price = parseFloat(data.pair.priceUsd).toLocaleString()
+
+    price = parseFloat(data.pair.priceUsd)
   })
 
   let amount = 0
@@ -95,8 +97,8 @@
 <div class="container">
   <h3>Calculator</h3>
   <div>
-    <Box title="${$currency} Price" value="${price}" />
-    <Box title="APY" value="{currentAPY}%" />
+    <Box title="${$currency} Price" value="${price.toLocaleString()}" />
+    <Box title="APY" value="{currentAPY.toLocaleString()}%" />
     <Box title="My {$currency} Balance" value="{balance} {$currency}" />
   </div>
   <div>
