@@ -91,6 +91,9 @@
   })
 </script>
 
+<svelte:head>
+  <title>Mayflower Finance - Calculator</title>
+</svelte:head>
 <div class="container">
   <h3>Calculator</h3>
   <div>

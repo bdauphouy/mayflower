@@ -26,6 +26,9 @@
   })
 </script>
 
+<svelte:head>
+  <title>Mayflower Finance - Swap</title>
+</svelte:head>
 {#if currentTab === 2}
   <div class="container tab-2">
     <header>
@@ -133,7 +136,6 @@
       label="From"
       placeholder="0.00"
       rightButtonText="BNB"
-      rightButtonHandler={handleFrom}
       rightButtonIconPath="/bnb.svg"
       rightButtonDisabled
     />
@@ -144,7 +146,6 @@
       label="To"
       placeholder="0.00"
       rightButtonText={$currency}
-      rightButtonHandler={handleTo}
       rightButtonIconPath="/mff.svg"
       rightButtonDisabled
     />

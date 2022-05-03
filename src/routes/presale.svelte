@@ -19,6 +19,9 @@
   import { currency } from '../store'
 </script>
 
+<svelte:head>
+  <title>Mayflower Finance - Presale</title>
+</svelte:head>
 <div class="container">
   <h3>Mayflower token presale</h3>
   <div>
@@ -26,7 +29,6 @@
       label="Enter amount"
       placeholder="{$currency} Amount"
       rightButtonText="MAX"
-      rightButtonHandler={() => false}
       rightButtonDisabled
     />
     <Button>Buy with $CRO</Button>

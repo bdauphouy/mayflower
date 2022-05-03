@@ -56,6 +56,9 @@
   })
 </script>
 
+<svelte:head>
+  <title>Mayflower Finance - Dashboard</title>
+</svelte:head>
 <div class="container">
   <div>
     <Box title="Market Cap" value="${marketCap}" />

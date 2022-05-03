@@ -63,6 +63,9 @@
   })
 </script>
 
+<svelte:head>
+  <title>Mayflower Finance - Account</title>
+</svelte:head>
 <div class="container">
   <div>
     <Box

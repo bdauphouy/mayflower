@@ -1,3 +1,6 @@
+<svelte:head>
+  <title>Mayflower Finance - Chart</title>
+</svelte:head>
 <div id="dexscreener-embed">
   <iframe
     title="chart"
