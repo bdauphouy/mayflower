@@ -1,5 +1,5 @@
 <script context="module">
-  export const load = async ({ fetch }) => {
+  export const load = async () => {
     const presale = import.meta.env.VITE_PUBLIC_PRESALE === 'true'
 
     if (!presale) {

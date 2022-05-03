@@ -1,7 +1,11 @@
 <script>
   import FooterList from '../shared/footer-list.svelte'
   import Button from '../shared/button.svelte'
-  import { currency } from '../../store'
+  import { currency, socialLinks } from '../../store'
+
+  const getHref = (title) => {
+    return $socialLinks.find((link) => link.title === title)?.href
+  }
 </script>
 
 <footer>
@@ -11,11 +15,11 @@
       links={[
         {
           title: 'Discord',
-          href: 'https://discord.com',
+          href: getHref('Discord'),
         },
         {
           title: 'Twitter',
-          href: 'https://twitter.com',
+          href: getHref('Twitter'),
         },
       ]}
     />
@@ -24,11 +28,11 @@
       links={[
         {
           title: 'Gitbook',
-          href: 'https://gitbook.com',
+          href: getHref('Gitbook'),
         },
         {
           title: 'Medium',
-          href: 'https://medium.com',
+          href: getHref('Medium'),
         },
       ]}
     />
@@ -37,11 +41,11 @@
       links={[
         {
           title: 'NFT (coming...)',
-          href: 'https://google.com',
+          href: getHref('Twitter'),
         },
         {
           title: 'DAO',
-          href: 'https://google.com',
+          href: getHref('DAO'),
         },
       ]}
     />

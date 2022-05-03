@@ -1,6 +1,7 @@
 <script>
   import SidebarItem from '../shared/sidebar-item.svelte'
   import SocialMedia from '../shared/social-media.svelte'
+  import { socialLinks } from '../../store'
 
   const presale = import.meta.env.VITE_PUBLIC_PRESALE === 'true'
 
@@ -39,24 +40,6 @@
       iconPath: '/sidebar-icons/presale.svg',
     })
   }
-
-  const socialLinks = [
-    {
-      title: 'Discord',
-      href: 'https://discord.gg/Ej4SwpxJVR',
-      iconPath: '/discord.svg',
-    },
-    {
-      title: 'Gitbook',
-      href: 'https://mayflowerfinance.gitbook.io/mayflower-finance1/',
-      iconPath: '/gitbook.svg',
-    },
-    {
-      title: 'Twitter',
-      href: 'https://twitter.com/MayFFinance',
-      iconPath: '/twitter.svg',
-    },
-  ]
 </script>
 
 <aside>
@@ -71,8 +54,10 @@
   </ul>
 
   <ul class="social-links">
-    {#each socialLinks as { title, href, iconPath }}
-      <SocialMedia {title} {href} {iconPath} />
+    {#each $socialLinks as { title, href, iconPath }}
+      {#if iconPath}
+        <SocialMedia {title} {href} {iconPath} />
+      {/if}
     {/each}
   </ul>
 </aside>
@@ -80,6 +65,7 @@
 <style lang="scss">
   aside {
     min-width: 300px;
+    min-height: 100vh;
     border-right: solid 1px $color-gray-2;
     display: flex;
     flex-direction: column;

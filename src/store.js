@@ -112,3 +112,29 @@ export const formatSeconds = readable((fullSeconds) => {
 export const round = readable(
   (n, d = 2) => Math.round(n * Math.pow(10, d)) / Math.pow(10, d)
 )
+
+export const socialLinks = readable([
+  {
+    title: 'Discord',
+    href: 'https://discord.gg/Ej4SwpxJVR',
+    iconPath: '/discord.svg',
+  },
+  {
+    title: 'Gitbook',
+    href: 'https://mayflowerfinance.gitbook.io/mayflower-finance1/',
+    iconPath: '/gitbook.svg',
+  },
+  {
+    title: 'Twitter',
+    href: 'https://twitter.com/MayFFinance',
+    iconPath: '/twitter.svg',
+  },
+  {
+    title: 'Medium',
+    href: ' https://medium.com/@mayflowerfinance1',
+  },
+  {
+    title: 'DAO',
+    href: 'https://twitter.com/UNKNOWNSDAO',
+  },
+])
