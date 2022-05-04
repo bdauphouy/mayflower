@@ -98,6 +98,10 @@
         &[type='number'] {
           -moz-appearance: textfield;
         }
+
+        &[disabled] {
+          color: #777777;
+        }
       }
 
       button {

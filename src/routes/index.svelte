@@ -24,7 +24,7 @@
 <script>
   import Box from '$lib/shared/box.svelte'
   import { account, currency, nextRebase, formatSeconds, round } from '../store'
-  import { onDestroy } from 'svelte'
+  import { onDestroy, onMount } from 'svelte'
 
   export let data
 
@@ -34,6 +34,21 @@
   let lifetime = 0
   let balance = 0
   let nextRebaseSeconds
+  // let treasury = 0
+
+  // const fetchTreasury = async () => {
+  //   treasury = await window.ethereum.request({
+  //     method: 'eth_getBalance',
+  //     // params: [accounts[0], 'latest'],
+  //     params: ['0x8E31f96C861469DC836CAEDd4E0D81EdC8DAA9e7', 'latest'],
+  //   })
+
+  //   treasury = parseInt(treasury.toString(10)) / 10e17
+  // }
+
+  // onMount(() => {
+  //   fetchTreasury()
+  // })
 
   const unsubscribeAccount = account.subscribe((act) => {
     if (act.balance || act.balance === 0) {
@@ -74,7 +89,7 @@
     />
   </div>
   <div>
-    <Box title="{$currency} Liquiditt Value" value="{marketCap} ${$currency}" />
+    <Box title="{$currency} Liquidity Value" value="{marketCap} ${$currency}" />
     <Box title="Treasury Assets" value="{balance} ${$currency}" />
     <Box title="RFV Market Value" value="{balance} ${$currency}" />
   </div>

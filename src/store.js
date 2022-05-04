@@ -134,6 +134,10 @@ export const socialLinks = readable([
     href: ' https://medium.com/@mayflowerfinance1',
   },
   {
+    title: 'NFT',
+    href: 'https://twitter.com/UNKNOWNSDAO',
+  },
+  {
     title: 'DAO',
     href: 'https://twitter.com/UNKNOWNSDAO',
   },

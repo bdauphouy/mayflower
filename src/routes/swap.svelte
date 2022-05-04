@@ -4,7 +4,7 @@
 <div id="app-bogged-embed">
   <iframe
     title="swap"
-    src="https://app.bogged.finance/cro/swap?chain=cronos&tokenOut=0x97749c9B61F878a880DfE312d2594AE07AEd7656&embed=1&theme=light"
+    src="https://app.bogged.finance/cro/swap?chain=cronos&tokenOut=0x97749c9B61F878a880DfE312d2594AE07AEd7656&embed=1&theme=dark"
   />
 </div>
 

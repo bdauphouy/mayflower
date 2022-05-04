@@ -47,8 +47,8 @@
   })
 
   let amount = 0
-  let priceAtPurchase = 0
-  let futurePrice = 0
+  let priceAtPurchase = price
+  let futurePrice = price
   let days = 30
 
   const handleAmount = () => {
@@ -116,7 +116,7 @@
     <div>
       <Input
         label="Price at purchase ($)"
-        placeholder="0"
+        placeholder={price}
         rightButtonText="Current"
         bind:value={priceAtPurchase}
         on:change={calculate}
@@ -124,7 +124,7 @@
       />
       <Input
         label="Future {$currency} price ($)"
-        placeholder="0"
+        placeholder={price}
         rightButtonText="Current"
         bind:value={futurePrice}
         on:change={calculate}

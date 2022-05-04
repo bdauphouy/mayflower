@@ -2,9 +2,16 @@
   import FooterList from '../shared/footer-list.svelte'
   import Button from '../shared/button.svelte'
   import { currency, socialLinks } from '../../store'
+  import { goto } from '$app/navigation'
 
   const getHref = (title) => {
     return $socialLinks.find((link) => link.title === title)?.href
+  }
+
+  const handleClick = () => {
+    goto(
+      'https://mm.finance/swap?outputCurrency=0x97749c9b61f878a880dfe312d2594ae07aed7656'
+    )
   }
 </script>
 
@@ -41,7 +48,7 @@
       links={[
         {
           title: 'NFT (coming...)',
-          href: getHref('Twitter'),
+          href: getHref('NFT'),
         },
         {
           title: 'DAO',
@@ -50,7 +57,7 @@
       ]}
     />
   </div>
-  <Button>Buy ${$currency}</Button>
+  <Button on:click={handleClick}>Buy ${$currency}</Button>
 </footer>
 
 <style lang="scss">
