@@ -74,6 +74,8 @@
     padding: 3.5rem 0;
 
     img {
+      cursor: pointer;
+
       @media (max-width: 1024px) {
         width: 50px;
       }

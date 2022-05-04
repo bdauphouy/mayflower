@@ -17,6 +17,12 @@
   import Input from '../lib/shared/input.svelte'
   import Button from '../lib/shared/button.svelte'
   import { currency } from '../store'
+
+  let amount = 0
+
+  const handleAmount = () => {
+    amount = 1000
+  }
 </script>
 
 <svelte:head>
@@ -29,7 +35,8 @@
       label="Enter amount"
       placeholder="{$currency} Amount"
       rightButtonText="MAX"
-      rightButtonDisabled
+      bind:value={amount}
+      on:rightButtonClick={handleAmount}
     />
     <Button>Buy with $CRO</Button>
   </div>
