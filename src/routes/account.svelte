@@ -23,8 +23,8 @@
 
 <script>
   import Box from '$lib/shared/box.svelte'
-  import { account, currency, nextRebase, formatSeconds } from '../store'
   import { onDestroy } from 'svelte'
+  import { account, currency } from '../store'
 
   export let data
 
@@ -34,7 +34,6 @@
   let yourEarningsFiveDays = 0
   let currentAPY = 0
   let price = 0
-  let nextRebaseSeconds
 
   const unsubscribeAccount = account.subscribe((act) => {
     if (act.balance || act.balance === 0) {
@@ -53,13 +52,8 @@
     price = parseFloat(data.pair.priceUsd)
   })
 
-  const unsubscribeNextRebase = nextRebase.subscribe((nr) => {
-    nextRebaseSeconds = nr.seconds
-  })
-
   onDestroy(() => {
     unsubscribeAccount()
-    unsubscribeNextRebase()
   })
 </script>
 
@@ -76,11 +70,7 @@
   </div>
   <div>
     <Box title="Current APY" value="{currentAPY}%" valueSize="large" />
-    <Box
-      title="Next Rebase"
-      value={$formatSeconds(nextRebaseSeconds) || '...'}
-      valueSize="large"
-    />
+    <Box title="Next Rebase" value="..." valueSize="large" />
   </div>
   <div>
     <Box title="Next Reward Yield" value="{nextRewardYield}%" />

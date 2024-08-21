@@ -23,8 +23,8 @@
 
 <script>
   import Box from '$lib/shared/box.svelte'
-  import { account, currency, nextRebase, formatSeconds, round } from '../store'
-  import { onDestroy, onMount } from 'svelte'
+  import { onDestroy } from 'svelte'
+  import { account, currency, round } from '../store'
 
   export let data
 
@@ -33,22 +33,6 @@
   let price = 0
   let lifetime = 0
   let balance = 0
-  let nextRebaseSeconds
-  // let treasury = 0
-
-  // const fetchTreasury = async () => {
-  //   treasury = await window.ethereum.request({
-  //     method: 'eth_getBalance',
-  //     // params: [accounts[0], 'latest'],
-  //     params: ['0x8E31f96C861469DC836CAEDd4E0D81EdC8DAA9e7', 'latest'],
-  //   })
-
-  //   treasury = parseInt(treasury.toString(10)) / 10e17
-  // }
-
-  // onMount(() => {
-  //   fetchTreasury()
-  // })
 
   const unsubscribeAccount = account.subscribe((act) => {
     if (act.balance || act.balance === 0) {
@@ -61,13 +45,8 @@
     price = parseFloat(data.pair.priceUsd).toLocaleString()
   })
 
-  const unsubscribeNextRebase = nextRebase.subscribe((nr) => {
-    nextRebaseSeconds = nr.seconds
-  })
-
   onDestroy(() => {
     unsubscribeAccount()
-    unsubscribeNextRebase()
   })
 </script>
 
@@ -82,11 +61,7 @@
   </div>
   <div>
     <Box title="Current APY" value="{currentAPY}%" valueSize="large" />
-    <Box
-      title="Next Rebase"
-      value={$formatSeconds(nextRebaseSeconds) || '...'}
-      valueSize="large"
-    />
+    <Box title="Next Rebase" value="..." valueSize="large" />
   </div>
   <div>
     <Box title="{$currency} Liquidity Value" value="{marketCap} ${$currency}" />

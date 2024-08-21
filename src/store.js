@@ -1,4 +1,4 @@
-import { writable, readable } from 'svelte/store'
+import { readable, writable } from 'svelte/store'
 
 export const currency = readable('MFF')
 
@@ -9,33 +9,6 @@ export const account = writable({
   ),
   nextRewardYield: 0.06335,
   interestRate: 0.0006365,
-})
-
-export const nextRebase = writable({
-  seconds: null,
-})
-
-const fetchNextRebase = () => {
-  return new Promise((resolve, reject) => {
-    fetch(`${import.meta.env.VITE_PUBLIC_NEXT_REBASE_URL}/next-rebase`)
-      .then((res) => res.json())
-      .then(({ seconds, interval }) => {
-        resolve({ seconds, interval })
-      })
-      .catch((err) => reject(err))
-  })
-}
-
-fetchNextRebase().then(({ seconds, interval }) => {
-  setInterval(() => {
-    if (seconds === 0) {
-      seconds = interval
-    } else {
-      seconds--
-    }
-
-    nextRebase.set({ seconds })
-  }, 1000)
 })
 
 export const connectWallet = readable(async () => {
